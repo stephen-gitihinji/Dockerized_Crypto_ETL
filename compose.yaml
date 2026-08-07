@@ -1,0 +1,29 @@
+#creating my docker compose
+services:
+  postgres:
+    image: postgres:latest
+    container_name: postgres_db
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: crypto_123
+      POSTGRES_DB: crypto
+    ports:
+      - "5433:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  app:
+    build: .
+    container_name: crypto_etl
+    environment:
+      DB_USER: postgres
+      DB_PASSWORD: crypto_123
+      DB_HOST: postgres
+      DB_PORT: 5432
+      DB_NAME: crypto
+    depends_on:
+      postgres:
+        condition: service_healthy
