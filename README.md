@@ -118,11 +118,6 @@ To check if the docker containers are up and running run `docker ps` or `docker 
 ```bash
 $ docker ps -a
 ```
-<div>
-<img src="containers_list.png" alt="containers list">
-<figcaption align="center"><i>list of containers</i></figcaption>
-</div>
-
 ### 3.Checking the Docker PostgreSQL database
 If containers are running, navigate to the postgres container shell and view the table data uploaded by the ETL.
 ```bash
